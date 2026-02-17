@@ -1,0 +1,9 @@
+#!/usr/bin/env python3
+import sys
+
+SEPARATOR = " "
+
+argv = sys.argv[1:]
+statement = SEPARATOR.join(argv)
+
+print(statement)

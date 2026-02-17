@@ -1,0 +1,36 @@
+#!/usr/bin/env python3
+import pathlib
+import sys
+
+arguments = sys.argv
+directories = arguments[1:]
+directories = [pathlib.Path(directory) for directory in directories]
+directories_set = set(directories)
+
+
+def perform():
+    result = []
+    for directory in directories_set:
+        glob_all = directory.glob("*")
+        glob_hidden = directory.glob(".*")
+        joined = set(glob_all) | set(glob_hidden)
+        result.append(joined)
+    return result
+
+
+def bold(string):
+    return "\033[1m" + string + "\033[0m"
+
+
+def print_joined(joined):
+    for sub_joined in joined:
+        for path in sub_joined:
+            to_print = path.name
+            if path.is_dir():
+                to_print = bold(to_print)
+
+            print(to_print)
+
+
+joined = perform()
+print_joined(joined)

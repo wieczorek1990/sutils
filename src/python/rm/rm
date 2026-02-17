@@ -1,0 +1,11 @@
+#!/usr/bin/env python3
+import os
+import shutil
+import sys
+
+arguments = sys.argv[1:]
+for deletable in arguments:
+    if os.path.isdir(deletable):
+        shutil.rmtree(deletable)
+    else:
+        os.remove(deletable)

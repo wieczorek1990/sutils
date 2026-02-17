@@ -1,0 +1,4 @@
+*.swp
+.idea/
+distribution/
+dist.tar.xz

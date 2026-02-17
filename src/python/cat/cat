@@ -1,0 +1,26 @@
+#!/usr/bin/env python3
+import os
+import sys
+
+INDENTATION = "  "
+
+
+def eprint(string):
+    print(string, file=sys.stderr)
+
+
+failed = []
+entries = sys.argv[1:]
+for entry in entries:
+    if os.path.isfile(entry):
+        with open(entry) as f:
+            contents = f.read()
+            print(contents, end="")
+    else:
+        failed.append(entry)
+
+if len(failed) > 0:
+    eprint("The following entries failed:")
+    for failing in failed:
+        eprint(f"{INDENTATION}{failing}")
+    sys.exit(1)
